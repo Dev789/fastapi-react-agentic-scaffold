@@ -28,10 +28,29 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 
 ## Workflows (`workflows/`)
 
+### Development
 | File | Purpose |
 |---|---|
 | `setup-local.md` | Bootstrap the local dev environment from a fresh clone |
 | `create-feature.md` | End-to-end feature development from branch creation to PR merge |
+| `fix-bug.md` | Structured debugging with reproduce-first approach and regression tests |
+| `refactor.md` | Safe refactoring with test-guarded verification |
+| `code-review.md` | AI-assisted code review checklist for pull requests |
+| `add-third-party-api.md` | Integrate external APIs with retry logic, circuit breakers, and mocks |
+| `write-adr.md` | Document Architecture Decision Records for significant technical choices |
+
+### Operations
+| File | Purpose |
+|---|---|
+| `deploy-production.md` | Step-by-step production deployment with staging validation and rollback |
+| `hotfix.md` | Emergency production hotfix with fast-track review process |
+| `performance-audit.md` | Profile backend and frontend performance with actionable findings |
+| `security-audit.md` | Comprehensive security audit across dependencies, auth, CORS, and logging |
+
+### Team
+| File | Purpose |
+|---|---|
+| `onboard-developer.md` | New team member onboarding from clone to first merged PR |
 
 ## How to Use
 

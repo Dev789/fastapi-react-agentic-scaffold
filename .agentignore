@@ -1,0 +1,107 @@
+# ===========================
+# .agentignore
+# ===========================
+# Files and directories that AI coding assistants should NOT index
+# or include in their context window. This keeps the AI focused on
+# relevant source code and avoids wasting tokens on noise.
+
+# ===========================
+# Dependencies
+# ===========================
+node_modules/
+.venv/
+venv/
+env/
+
+# ===========================
+# Build Artifacts
+# ===========================
+frontend/dist/
+backend/dist/
+build/
+*.egg-info/
+
+# ===========================
+# Python Cache
+# ===========================
+__pycache__/
+*.pyc
+*.pyo
+.mypy_cache/
+.ruff_cache/
+
+# ===========================
+# Test & Coverage Reports
+# ===========================
+htmlcov/
+coverage/
+.coverage
+.coverage.*
+.pytest_cache/
+
+# ===========================
+# Environment & Secrets
+# ===========================
+.env
+.env.*
+!.env.example
+
+# ===========================
+# IDE / Editor
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===========================
+# Git
+# ===========================
+.git/
+
+# ===========================
+# Docker
+# ===========================
+docker-compose.override.yml
+
+# ===========================
+# Terraform State (sensitive)
+# ===========================
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# ===========================
+# Alembic Migration Versions
+# ===========================
+# Individual migration files are auto-generated and noisy.
+# The AI should reference models/ for schema, not raw migrations.
+backend/alembic/versions/
+
+# ===========================
+# Lock Files
+# ===========================
+# These are machine-generated and consume large context windows.
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===========================
+# Static / Media Uploads
+# ===========================
+frontend/public/uploads/
+backend/static/uploads/
+
+# ===========================
+# Logs
+# ===========================
+*.log
+logs/
+
+# ===========================
+# OS Files
+# ===========================
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -68,6 +68,7 @@ rm -rf .git && git init   # Start fresh git history
 ```
 my-project/
 ├── agents.md                  # 🧠 START HERE — Global AI directives & routing table
+├── .agentignore               # Files AI assistants should skip when indexing
 ├── .agents/
 │   ├── README.md              # Index of all personas, prompts, and workflows
 │   ├── rules/                 # 🎭 AI personas (one per SDLC role)
@@ -84,9 +85,19 @@ my-project/
 │   │   ├── create-endpoint.md #    → Generate a full backend vertical slice
 │   │   ├── create-component.md#    → Generate a React component with tests
 │   │   └── create-migration.md#    → Generate an Alembic migration safely
-│   └── workflows/             # 🔄 Step-by-step development workflows
+│   └── workflows/             # 🔄 Step-by-step development workflows (12 total)
 │       ├── setup-local.md     #    → Bootstrap local environment
-│       └── create-feature.md  #    → End-to-end feature development
+│       ├── create-feature.md  #    → End-to-end feature development
+│       ├── fix-bug.md         #    → Structured debugging + regression tests
+│       ├── refactor.md        #    → Safe refactoring with test guards
+│       ├── code-review.md     #    → AI-assisted PR review checklist
+│       ├── add-third-party-api.md  # → External API integration
+│       ├── write-adr.md       #    → Architecture Decision Records
+│       ├── deploy-production.md #  → Production deployment + rollback
+│       ├── hotfix.md          #    → Emergency production fixes
+│       ├── performance-audit.md #  → Backend + frontend profiling
+│       ├── security-audit.md  #    → Comprehensive security review
+│       └── onboard-developer.md #  → New team member onboarding
 ├── README.md                  # This file
 └── .gitignore
 ```
@@ -240,6 +251,36 @@ The result is code that **multiple specialized engineers would have reviewed** �
 ```
 
 > **Pro tip:** For a new feature, tell your AI assistant: *"Follow the create-feature workflow in `.agents/workflows/create-feature.md`"* — it will execute all 10 steps in sequence.
+
+---
+
+## Available Workflows (12)
+
+All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any of them by name.
+
+### 🔨 Development
+| Workflow | Command | What It Does |
+|---|---|---|
+| Setup Local | `Follow setup-local.md` | Clone → install deps → Docker → migrations → dev servers |
+| Create Feature | `Follow create-feature.md` | Branch → build backend + frontend → lint → test → PR |
+| Fix Bug | `Follow fix-bug.md` | Reproduce → write failing test → fix → verify regression |
+| Refactor | `Follow refactor.md` | Ensure test coverage → small steps → verify zero behavior change |
+| Code Review | `Follow code-review.md` | 10-section PR checklist: architecture, security, DB, tests, quality |
+| Add Third-Party API | `Follow add-third-party-api.md` | Service wrapper → retry logic → circuit breaker → mocks → tests |
+| Write ADR | `Follow write-adr.md` | Document architecture decisions with options, trade-offs, consequences |
+
+### 🚀 Operations
+| Workflow | Command | What It Does |
+|---|---|---|
+| Deploy Production | `Follow deploy-production.md` | Freeze → regression → staging → smoke test → deploy → monitor |
+| Hotfix | `Follow hotfix.md` | Branch from `main` → minimal fix → fast-track review → backport → post-mortem |
+| Performance Audit | `Follow performance-audit.md` | Profile DB queries + Lighthouse + bundle size → findings report |
+| Security Audit | `Follow security-audit.md` | Dependency scan → secrets scan → auth review → CORS → headers |
+
+### 🧑‍💻 Team
+| Workflow | Command | What It Does |
+|---|---|---|
+| Onboard Developer | `Follow onboard-developer.md` | Day 1 guide: setup → read architecture → run tests → first merged PR |
 
 ---
 
