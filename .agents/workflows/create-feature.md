@@ -54,17 +54,44 @@ cd frontend
 npm run test
 ```
 
-### 7. Commit Changes
+### 7. Commit Changes (Atomic Commits)
+Per `agents.md` §4.1 — each commit must represent **one logical change**. Never bundle unrelated layers into a single commit. Use the following sequence:
+
 ```bash
-git add -A
-git commit -m "feat(<scope>): <short description>
+# Backend — one commit per layer
+git add backend/app/models/
+git commit -m "feat(models): add <Resource> model with audit columns"
 
-- Added <resource> model, schemas, CRUD, and router
-- Added <ComponentName> component with Redux integration
-- Added unit and integration tests
+git add backend/app/schemas/
+git commit -m "feat(schemas): add <Resource> create/update/out schemas"
 
-Closes #<ticket-id>"
+git add backend/app/crud/
+git commit -m "feat(crud): add <Resource> CRUD operations"
+
+git add backend/app/api/
+git commit -m "feat(api): add <Resource> endpoints with pagination"
+
+git add backend/alembic/
+git commit -m "feat(migration): add <resource>s table migration"
+
+# Frontend — one commit per layer
+git add frontend/src/types/ frontend/src/api/
+git commit -m "feat(frontend): add <Resource> types and API client"
+
+git add frontend/src/features/ frontend/src/components/ frontend/src/pages/
+git commit -m "feat(frontend): add <ComponentName> component with Redux integration"
+
+# Tests — can be one commit if all tests are for the same feature
+git add backend/tests/ frontend/src/**/*.test.*
+git commit -m "test: add <Resource> unit and integration tests"
+
+# Docs
+git add CHANGELOG.md
+git commit -m "docs: update CHANGELOG for <Resource> feature (Closes #<ticket-id>)"
 ```
+
+> **Rule of thumb:** If a commit message needs the word "and" to describe unrelated layers, split it.
+
 
 ### 8. Push and Create PR
 ```bash
