@@ -31,23 +31,23 @@ This scaffold provides **persona rules**, **prompt templates**, and **workflows*
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│                    You (Developer)                        │
+│                    You (Developer)                       │
 │                                                          │
 │   "Create a products endpoint with CRUD operations"      │
 └──────────────────────┬───────────────────────────────────┘
                        │
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│                  AI Coding Assistant                      │
+│                  AI Coding Assistant                     │
 │                                                          │
 │   1. Reads agents.md → finds routing table               │
 │   2. Routes to fastapi-rules.md (backend task)           │
 │   3. Also consults dba.md (schema) + qa.md (tests)       │
 │   4. Follows create-endpoint.md prompt template          │
 │                                                          │
-│   Output: Model → Schema → CRUD → Router → Migration    │
+│   Output: Model → Schema → CRUD → Router → Migration     │
 │           → Unit Tests → Integration Tests               │
-│           All following YOUR project's conventions.       │
+│           All following YOUR project's conventions.      │
 └──────────────────────────────────────────────────────────┘
 ```
 
