@@ -30,6 +30,35 @@
   - TypeScript/React: `camelCase` for variables/functions. `PascalCase` for components and types.
   - Database: `snake_case` for tables and columns. Plural table names (e.g., `users`, `orders`).
 
+### 2.1 Documentation Standards
+- **Python:** Every public function, class, and module must have a docstring (Google style).
+  ```python
+  async def create_user(db: AsyncSession, user_in: UserCreate) -> User:
+      """Create a new user in the database.
+
+      Args:
+          db: Async database session.
+          user_in: Validated user creation data.
+
+      Returns:
+          The newly created User ORM instance.
+
+      Raises:
+          DuplicateResourceError: If email already exists.
+      """
+  ```
+- **TypeScript:** Use JSDoc for exported functions and complex logic.
+  ```typescript
+  /**
+   * Fetches a paginated list of products from the API.
+   * @param skip - Number of items to skip (default: 0)
+   * @param limit - Max items to return (default: 20)
+   * @returns Promise resolving to a ProductList response
+   */
+  ```
+- **Comments:** Explain **why**, never **what**. The code shows what it does — comments explain non-obvious reasoning.
+- **README updates:** When adding a new feature that changes setup, configuration, or environment variables, update the relevant section in `README.md` in the same PR.
+
 ## 3. Canonical Folder Structure
 
 ```
@@ -89,3 +118,60 @@
 - **Branch naming:** `feature/<ticket-id>-short-description`, `fix/<ticket-id>-short-description`, `chore/<description>`.
 - **Commit messages:** Use Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`).
 - **Pull requests:** Must reference the originating ticket. Require at least one approval before merge.
+
+### 4.1 Granular Atomic Commits
+- Each commit must represent **one logical change**. Never bundle unrelated changes.
+- Preferred commit sequence for a new feature:
+  ```
+  feat(models): add Product model with audit columns
+  feat(schemas): add Product create/update/out schemas
+  feat(crud): add Product CRUD operations
+  feat(api): add Product endpoints with pagination
+  feat(migration): add products table migration
+  test: add Product endpoint unit and integration tests
+  docs: update CHANGELOG for Product feature
+  ```
+- If a commit cannot be described without using the word "and", it should be split.
+- Tests and code must be in the same PR but may be in separate commits.
+
+### 4.2 Changelog
+- Maintain a `CHANGELOG.md` in the project root following [Keep a Changelog](https://keepachangelog.com/) format.
+- Every user-facing change **must** have a changelog entry in the same PR that introduces it.
+- Group entries under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
+- Format:
+  ```markdown
+  ## [Unreleased]
+  ### Added
+  - Product CRUD endpoints with pagination (#42)
+  - Product search by category filter (#43)
+
+  ### Fixed
+  - Order total calculation with zero quantity (#38)
+  ```
+- On release, move `[Unreleased]` entries under the version heading with the release date.
+
+### 4.3 Pull Request Description
+- Every PR must include:
+  ```markdown
+  ## Summary
+  Brief description of what this PR does and why.
+
+  ## Changes
+  - Bullet list of specific changes made.
+
+  ## Related Ticket
+  Closes #<ticket-id>
+
+  ## Testing
+  Describe how this was tested (automated + manual).
+
+  ## Screenshots (if UI change)
+  Before / After screenshots or recordings.
+
+  ## Checklist
+  - [ ] Tests pass locally
+  - [ ] Linting passes
+  - [ ] CHANGELOG updated
+  - [ ] Documentation updated (if applicable)
+  ```
+
