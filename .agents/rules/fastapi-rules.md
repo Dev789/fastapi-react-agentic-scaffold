@@ -1,7 +1,7 @@
 # FastAPI + PostgreSQL Backend Rules
 
 ## 1. Stack & Tooling
-- **Framework:** FastAPI (latest stable).
+- **Framework:** FastAPI (see `agents.md` Supported Version Matrix for pinned version).
 - **Database:** PostgreSQL via `asyncpg`. SQLAlchemy 2.0 async ORM.
 - **Schemas:** Pydantic v2 with `model_config = ConfigDict(from_attributes=True)`.
 - **Migrations:** Alembic (async driver). Every schema change = a migration.

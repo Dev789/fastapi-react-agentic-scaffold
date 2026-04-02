@@ -5,7 +5,7 @@
 - **Language:** TypeScript strict mode. No `any` types unless explicitly justified with a `// REASON:` comment.
 - **Styling:** Tailwind CSS. Use `@apply` sparingly — prefer composing utility classes directly in JSX. Extract repeated patterns into component-level classes only.
 - **State Management:** Redux Toolkit for global/server state. Use `createSlice` and `createAsyncThunk`. Avoid raw `useReducer` for shared state.
-- **Routing:** React Router v6+ with lazy-loaded route components via `React.lazy()` + `Suspense`.
+- **Routing:** React Router v6 (see `agents.md` Supported Version Matrix) with lazy-loaded route components via `React.lazy()` + `Suspense`.
 - **HTTP Client:** Axios with a centralized instance in `src/api/client.ts`. Attach auth tokens via interceptors.
 
 ## 2. Component Rules
