@@ -75,14 +75,18 @@ docker-compose.override.yml
 # ===========================
 # Alembic Migration Versions
 # ===========================
-# Individual migration files are auto-generated and noisy.
-# The AI should reference models/ for schema, not raw migrations.
-backend/alembic/versions/
+# NOTE: NOT ignored. Workflows (create-migration.md) and prompts
+# require the AI to inspect generated migration files in this directory.
+# If context bloat becomes an issue, re-add this exclusion and update
+# create-migration.md to rely solely on CLI output.
 
 # ===========================
 # Lock Files
 # ===========================
-# These are machine-generated and consume large context windows.
+# Machine-generated and consume large context windows.
+# IMPORTANT: security-audit.md depends on dependency truth from these
+# files. Since they are excluded here, that workflow must rely on CLI
+# output (npm audit, pip-audit) rather than direct file inspection.
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
