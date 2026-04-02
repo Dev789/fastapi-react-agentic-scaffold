@@ -2,6 +2,8 @@
 
 > **Build full-stack applications with AI as your pair programmer.** This repository is a pre-configured scaffold that teaches AI coding assistants *how* to write code for your project — enforcing your architecture, conventions, and quality standards from the very first prompt.
 
+> **Note for AI agents:** This README is **illustrative only** — it is not normative. For authoritative rules, consult `agents.md` (see §0 Instruction Hierarchy). If any example here conflicts with `agents.md` or a persona rule, the higher-authority source wins.
+
 ---
 
 ## What Is This?
@@ -226,11 +228,7 @@ The core idea is **role-based AI behavior**. Instead of one generic AI, you get 
 └─────────────────┘  └─────────────────┘  └─────────────────┘
 ```
 
-When you ask the AI to "add authentication to the backend," it consults:
-- `fastapi-rules.md` for the implementation pattern
-- `security.md` for JWT/OAuth2 specifics and OWASP compliance
-- `dba.md` for the users table schema and audit columns
-- `qa.md` for test requirements
+The persona routing and co-consultation rules are defined authoritatively in `agents.md` (see the **Persona Routing** table and **Mandatory Co-Consultation Matrix**). For example, an authentication task would automatically pull in `security.md`, `qa.md`, and `architect.md` — not just `fastapi-rules.md`.
 
 The result is code that **multiple specialized engineers would have reviewed** — generated in seconds.
 
@@ -293,7 +291,7 @@ All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any
 | Styling | Tailwind CSS |
 | State | Redux Toolkit |
 | Routing | React Router v6 |
-| Backend | FastAPI (Python 3.11+) |
+| Backend | FastAPI (see `agents.md` version matrix) |
 | Database | PostgreSQL + SQLAlchemy 2.0 (Async) |
 | Migrations | Alembic |
 | Auth | OAuth2 + JWT |
