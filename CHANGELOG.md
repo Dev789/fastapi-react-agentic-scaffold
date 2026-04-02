@@ -18,3 +18,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - API documentation standards (OpenAPI enrichment) for FastAPI endpoints
 - `.agentignore` file to optimize AI assistant context windows
 - `.gitignore` covering Python, Node.js, IDE, Docker, Terraform, and OS artifacts
+- `run-tests` workflow for running the full test suite with coverage reporting
+- `CHANGELOG.md` following Keep a Changelog format

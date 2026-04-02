@@ -38,6 +38,7 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 | `code-review.md` | AI-assisted code review checklist for pull requests |
 | `add-third-party-api.md` | Integrate external APIs with retry logic, circuit breakers, and mocks |
 | `write-adr.md` | Document Architecture Decision Records for significant technical choices |
+| `run-tests.md` | Run the full test suite (unit, integration, E2E) with coverage reporting |
 
 ### Operations
 | File | Purpose |

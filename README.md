@@ -268,6 +268,7 @@ All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any
 | Code Review | `Follow code-review.md` | 10-section PR checklist: architecture, security, DB, tests, quality |
 | Add Third-Party API | `Follow add-third-party-api.md` | Service wrapper → retry logic → circuit breaker → mocks → tests |
 | Write ADR | `Follow write-adr.md` | Document architecture decisions with options, trade-offs, consequences |
+| Run Tests | `Follow run-tests.md` | Full test suite: unit → integration → E2E → coverage → lint |
 
 ### 🚀 Operations
 | Workflow | Command | What It Does |
