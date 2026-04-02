@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Instruction hierarchy in `agents.md` (§0) to resolve governance conflicts
+- Mandatory co-consultation matrix in `agents.md` (§1.1) for cross-domain tasks
+- Supported version matrix in `agents.md` (§1.2) pinning 12 core dependencies
+- Disclaimer in `README.md` clarifying its illustrative-only status
+
+### Fixed
+- Contradictory commit rules between `agents.md` and `create-feature.md` workflow
+- Context-blocking in `.agentignore` for required Alembic migration files
+- Floating version language ("latest stable", "v6+") in persona rules with pinned dependencies
 - Multi-agent persona architecture with 9 specialized AI personas (`react-rules`, `fastapi-rules`, `architect`, `security`, `devops`, `dba`, `qa`, `ba`, `pm`)
 - 3 reusable prompt templates (`create-endpoint`, `create-component`, `create-migration`)
 - 12 development workflows covering feature creation, bug fixes, code review, refactoring, deployment, hotfix, performance audit, security audit, onboarding, third-party API integration, and ADR authoring
