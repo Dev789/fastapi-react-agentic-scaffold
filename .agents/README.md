@@ -1,6 +1,6 @@
-# .agents — AI Agent Suite
+# .agents - AI Agent Suite
 
-This directory contains the AI persona rules, reusable prompts, and workflows that govern how AI assistants interact with this codebase.
+This directory contains the AI persona rules, specialized skills, and workflows that govern how AI assistants interact with this codebase.
 
 > **Start here:** Read `../agents.md` for the global routing table that determines which persona to use for each task.
 
@@ -18,13 +18,19 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 | `ba.md` | Business Analyst | Writing user stories, acceptance criteria, requirements documents |
 | `pm.md` | Project Manager | Task breakdown, sprint planning, ticket management, releases |
 
-## Prompts (`prompts/`)
+## Skills (`skills/`)
 
-| File | Purpose |
+| Capability | Purpose |
 |---|---|
-| `create-endpoint.md` | Generate a full backend vertical slice (model → schema → CRUD → router → migration → tests) |
-| `create-component.md` | Generate a React component with hook, types, Redux integration, and tests |
-| `create-migration.md` | Generate and validate an Alembic database migration |
+| `security-scanner` | Comprehensive security audit across dependencies, auth, CORS, and logging |
+| `performance-profiler` | Profile backend and frontend performance with actionable findings |
+| `pr-reviewer` | AI-assisted code review checklist for pull requests |
+| `scaffold-backend-endpoint` | Generate a full backend vertical slice (model → schema → CRUD → router → migration → tests) |
+| `scaffold-frontend-component`| Generate a React component with hook, types, Redux integration, and tests |
+| `scaffold-db-migration` | Generate and validate an Alembic database migration |
+| `push-code-repo` | Push committed code to the correct remote branch with git safety checks |
+
+Agents that do not auto-discover skills should read `.agents/skills/registry.yaml` to map tasks to the correct skill file.
 
 ## Workflows (`workflows/`)
 
@@ -35,7 +41,6 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 | `create-feature.md` | End-to-end feature development from branch creation to PR merge |
 | `fix-bug.md` | Structured debugging with reproduce-first approach and regression tests |
 | `refactor.md` | Safe refactoring with test-guarded verification |
-| `code-review.md` | AI-assisted code review checklist for pull requests |
 | `add-third-party-api.md` | Integrate external APIs with retry logic, circuit breakers, and mocks |
 | `write-adr.md` | Document Architecture Decision Records for significant technical choices |
 | `run-tests.md` | Run the full test suite (unit, integration, E2E) with coverage reporting |
@@ -45,8 +50,6 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 |---|---|
 | `deploy-production.md` | Step-by-step production deployment with staging validation and rollback |
 | `hotfix.md` | Emergency production hotfix with fast-track review process |
-| `performance-audit.md` | Profile backend and frontend performance with actionable findings |
-| `security-audit.md` | Comprehensive security audit across dependencies, auth, CORS, and logging |
 
 ### Team
 | File | Purpose |
@@ -56,5 +59,5 @@ This directory contains the AI persona rules, reusable prompts, and workflows th
 ## How to Use
 
 1. **AI assistants** automatically consult the routing table in `agents.md` to select the right persona.
-2. **Developers** can reference prompt templates when asking an AI to generate code (e.g., "Use the `create-endpoint` prompt for a `products` resource").
-3. **Workflows** provide step-by-step guides for common processes — useful for onboarding and consistency.
+2. **Skills** define self-contained capabilities for the AI (e.g., "Run the `security-scanner` skill" or "Use `scaffold-backend-endpoint`").
+3. **Workflows** provide step-by-step guides for common processes - useful for onboarding and consistency.

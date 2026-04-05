@@ -2,19 +2,19 @@
 
 ## 0. Instruction Hierarchy
 
-When instruction sources conflict, the following precedence order applies (highest → lowest):
+When instruction sources conflict, the following precedence order applies (highest -> lowest):
 
-1. **`agents.md`** — Global directives. Always wins.
-2. **Persona rules** (`.agents/rules/*`) — Domain-specific constraints.
-3. **Workflows & prompts** (`.agents/workflows/*`, `.agents/prompts/*`) — Procedural steps.
-4. **README examples** (`README.md`, `.agents/README.md`) — Illustrative only; never normative.
+1. **`agents.md`** - Global directives. Always wins.
+2. **Persona rules** (`.agents/rules/*`) - Domain-specific constraints.
+3. **Skills & workflows** (`.agents/skills/*/SKILL.md`, `.agents/workflows/*`) - Reusable execution guides.
+4. **README examples** (`README.md`, `.agents/README.md`) - Illustrative only; never normative.
 
-If a workflow or prompt contradicts `agents.md` or a persona rule, follow the higher-authority source and flag the inconsistency to the developer.
+If a workflow or skill contradicts `agents.md` or a persona rule, follow the higher-authority source and flag the inconsistency to the developer.
 
 ## 1. Core Operating Procedure
 - This repository utilizes a **Multi-Agent Persona Architecture**.
 - Depending on the task requested, you **must** adopt the appropriate persona found in the `.agents/rules/` directory before generating a response or writing code.
-- Consult `.agents/README.md` for a full index of available personas, prompts, and workflows.
+- Consult `.agents/README.md` for a full index of available personas, skills, and workflows.
 
 ### Persona Routing
 | Task Domain | Persona File |
@@ -113,10 +113,10 @@ Do **not** use phrases like "latest stable" or "v6+" when referring to dependenc
 ├── README.md                  # Project documentation
 ├── .gitignore
 ├── .agents/
-│   ├── README.md              # Index of personas, prompts, workflows
+│   ├── README.md              # Index of personas, skills, workflows
 │   ├── rules/                 # AI persona rule files
-│   ├── prompts/               # Reusable prompt templates
-│   └── workflows/             # Step-by-step workflows
+│   ├── skills/                # Specialized agent capabilities
+│   └── workflows/             # Step-by-step procedures
 ├── frontend/
 │   ├── public/
 │   ├── src/
