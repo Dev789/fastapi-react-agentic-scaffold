@@ -25,7 +25,7 @@ So you get generic code that doesn't fit. You spend time correcting it. Every pr
 
 ### The Solution
 
-This scaffold provides **persona rules**, **prompt templates**, and **workflows** that pre-load all of those decisions. When an AI assistant reads these files, it generates code that is *already consistent* with your architecture — no corrections needed.
+This scaffold provides **persona rules**, **skills**, and **workflows** that pre-load all of those decisions. When an AI assistant reads these files, it generates code that is *already consistent* with your architecture — no corrections needed.
 
 ---
 
@@ -45,7 +45,7 @@ This scaffold provides **persona rules**, **prompt templates**, and **workflows*
 │   1. Reads agents.md → finds routing table               │
 │   2. Routes to fastapi-rules.md (backend task)           │
 │   3. Also consults dba.md (schema) + qa.md (tests)       │
-│   4. Follows create-endpoint.md prompt template          │
+│   4. Loads scaffold-backend-endpoint skill               │
 │                                                          │
 │   Output: Model → Schema → CRUD → Router → Migration     │
 │           → Unit Tests → Integration Tests               │
@@ -72,7 +72,7 @@ my-project/
 ├── agents.md                  # 🧠 START HERE — Global AI directives & routing table
 ├── .agentignore               # Files AI assistants should skip when indexing
 ├── .agents/
-│   ├── README.md              # Index of all personas, prompts, and workflows
+│   ├── README.md              # Index of all personas, skills, and workflows
 │   ├── rules/                 # 🎭 AI personas (one per SDLC role)
 │   │   ├── react-rules.md     #    → Frontend: React + Vite + Tailwind + Redux
 │   │   ├── fastapi-rules.md   #    → Backend: FastAPI + PostgreSQL + SQLAlchemy
@@ -83,22 +83,22 @@ my-project/
 │   │   ├── qa.md              #    → Testing strategy, coverage, E2E
 │   │   ├── ba.md              #    → User stories, acceptance criteria, NFRs
 │   │   └── pm.md              #    → Sprint planning, tickets, releases
-│   ├── prompts/               # 📝 Reusable prompt templates
-│   │   ├── create-endpoint.md #    → Generate a full backend vertical slice
-│   │   ├── create-component.md#    → Generate a React component with tests
-│   │   └── create-migration.md#    → Generate an Alembic migration safely
-│   └── workflows/             # 🔄 Step-by-step development workflows (12 total)
+│   ├── skills/                # Reusable skill folders
+│   │   ├── scaffold-backend-endpoint/
+│   │   ├── scaffold-frontend-component/
+│   │   ├── scaffold-db-migration/
+│   │   ├── pr-reviewer/
+│   │   ├── performance-profiler/
+│   │   └── security-scanner/
+│   └── workflows/             # 🔄 Step-by-step development workflows (10 total)
 │       ├── setup-local.md     #    → Bootstrap local environment
 │       ├── create-feature.md  #    → End-to-end feature development
 │       ├── fix-bug.md         #    → Structured debugging + regression tests
 │       ├── refactor.md        #    → Safe refactoring with test guards
-│       ├── code-review.md     #    → AI-assisted PR review checklist
 │       ├── add-third-party-api.md  # → External API integration
 │       ├── write-adr.md       #    → Architecture Decision Records
 │       ├── deploy-production.md #  → Production deployment + rollback
 │       ├── hotfix.md          #    → Emergency production fixes
-│       ├── performance-audit.md #  → Backend + frontend profiling
-│       ├── security-audit.md  #    → Comprehensive security review
 │       └── onboard-developer.md #  → New team member onboarding
 ├── README.md                  # This file
 └── .gitignore
@@ -110,35 +110,33 @@ Most AI coding assistants automatically read project-level instruction files. He
 
 | Assistant | Setup |
 |---|---|
-| **Cursor** | `agents.md` is auto-read as project rules. Place it in the root (already done). |
-| **GitHub Copilot** | Copy `agents.md` to `.github/copilot-instructions.md`. |
-| **Windsurf** | `agents.md` at root is auto-detected. |
-| **Cline / Aider** | These read `agents.md` automatically when present in the project root. |
-| **ChatGPT / Claude (manual)** | Paste the contents of `agents.md` as a system prompt, or attach the relevant rule file to your conversation. |
+| **Tools that read repo instructions** | Use `agents.md` as the canonical project instruction file. |
+| **GitHub Copilot** | Keep `.github/copilot-instructions.md` mirrored from `agents.md` if you use Copilot-style tooling. |
+| **Manual assistants** | Paste `agents.md`, then attach `.agents/README.md` or the relevant rule and skill files. |
 
 > **Tip:** The `agents.md` file contains a routing table that tells the AI *which* persona file to read based on the task. The AI handles the rest.
 
 ### Step 4: Start Building
 
-Open your AI assistant and try these real prompts:
+Open your AI assistant and try these example requests:
 
 #### 🟢 Backend — Create an Endpoint
 ```
-Using the create-endpoint prompt template, generate a full vertical slice 
+Use the scaffold-backend-endpoint skill to generate a full vertical slice 
 for a "products" resource. Follow all rules in fastapi-rules.md and dba.md.
 ```
 The AI will generate: model, schemas, CRUD, router, migration, and tests — all following your project conventions.
 
 #### 🔵 Frontend — Create a Component
 ```
-Using the create-component prompt template, generate a ProductCard component 
+Use the scaffold-frontend-component skill to generate a ProductCard component 
 that displays a product's name, price, and image. Follow react-rules.md.
 ```
 The AI will generate: component file, custom hook (if needed), types, Redux slice, and test file.
 
 #### 🟡 Database — Create a Migration
 ```
-Using the create-migration prompt template, add a "categories" table with 
+Use the scaffold-db-migration skill to add a "categories" table with 
 name (unique), description, and a foreign key to products. Follow dba.md.
 ```
 The AI will generate: the model, the Alembic migration, a review checklist, and a rollback test.
@@ -174,8 +172,8 @@ Create new persona files in `.agents/rules/` for domain-specific guidance:
 - **Models:** Version with MLflow. Never commit model binaries to git.
 ```
 
-### Add Your Own Prompts
-Create new templates in `.agents/prompts/` for repetitive tasks:
+### Add Your Own Skills
+Create new skill folders in `.agents/skills/` for repetitive tasks:
 ```markdown
 # Task: Create a new background job
 1. Create a Celery task in `backend/app/tasks/`.
@@ -240,8 +238,8 @@ The result is code that **multiple specialized engineers would have reviewed** �
 1. 📋 Define requirements    → Use BA persona to write user stories
 2. 📐 Plan the architecture  → Use Architect persona for system design
 3. 🗄️ Design the schema     → Use DBA persona for table design + migration
-4. ⚙️ Build the backend      → Use create-endpoint prompt template
-5. 🎨 Build the frontend     → Use create-component prompt template
+4. ⚙️ Build the backend      → Use scaffold-backend-endpoint
+5. 🎨 Build the frontend     → Use scaffold-frontend-component
 6. 🔒 Security review        → Use Security persona to audit the code
 7. 🧪 Write tests            → Use QA persona for test strategy
 8. 🚀 Deploy                 → Use DevOps persona for CI/CD + Docker
@@ -252,7 +250,7 @@ The result is code that **multiple specialized engineers would have reviewed** �
 
 ---
 
-## Available Workflows (12)
+## Available Workflows (10)
 
 All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any of them by name.
 
@@ -263,7 +261,6 @@ All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any
 | Create Feature | `Follow create-feature.md` | Branch → build backend + frontend → lint → test → PR |
 | Fix Bug | `Follow fix-bug.md` | Reproduce → write failing test → fix → verify regression |
 | Refactor | `Follow refactor.md` | Ensure test coverage → small steps → verify zero behavior change |
-| Code Review | `Follow code-review.md` | 10-section PR checklist: architecture, security, DB, tests, quality |
 | Add Third-Party API | `Follow add-third-party-api.md` | Service wrapper → retry logic → circuit breaker → mocks → tests |
 | Write ADR | `Follow write-adr.md` | Document architecture decisions with options, trade-offs, consequences |
 | Run Tests | `Follow run-tests.md` | Full test suite: unit → integration → E2E → coverage → lint |
@@ -273,8 +270,6 @@ All workflows live in `.agents/workflows/`. Tell your AI assistant to follow any
 |---|---|---|
 | Deploy Production | `Follow deploy-production.md` | Freeze → regression → staging → smoke test → deploy → monitor |
 | Hotfix | `Follow hotfix.md` | Branch from `main` → minimal fix → fast-track review → backport → post-mortem |
-| Performance Audit | `Follow performance-audit.md` | Profile DB queries + Lighthouse + bundle size → findings report |
-| Security Audit | `Follow security-audit.md` | Dependency scan → secrets scan → auth review → CORS → headers |
 
 ### 🧑‍💻 Team
 | Workflow | Command | What It Does |
