@@ -13,37 +13,87 @@ If a workflow or skill contradicts `agents.md` or a persona rule, follow the hig
 
 ## 1. Core Operating Procedure
 - This repository utilizes a **Multi-Agent Persona Architecture**.
-- Depending on the task requested, you **must** adopt the appropriate persona found in the `.agents/rules/` directory before generating a response or writing code.
+- Depending on the task requested, you **must** route work to the appropriate Antigravity agent handle defined below. Each agent must follow its mapped rule file in `.agents/rules/` before generating a response or writing code.
 - Consult `.agents/README.md` for a full index of available personas, skills, and workflows.
 
 ### Persona Routing
-| Task Domain | Persona File |
-|---|---|
-| React / Frontend code | `.agents/rules/react-rules.md` |
-| FastAPI / Backend code | `.agents/rules/fastapi-rules.md` |
-| System design / Architecture decisions | `.agents/rules/architect.md` |
-| Security review / Auth / Vulnerability fixes | `.agents/rules/security.md` |
-| Docker / CI-CD / Infrastructure | `.agents/rules/devops.md` |
-| Database schema / Queries / Migrations | `.agents/rules/dba.md` |
-| Writing or reviewing tests | `.agents/rules/qa.md` |
-| Requirements / User stories | `.agents/rules/ba.md` |
-| Task breakdown / Sprint planning | `.agents/rules/pm.md` |
+Use the following Antigravity IDW agent handles as the canonical routing layer. `@orchestrator` is the entrypoint and delegates work to the specialized subagents below.
 
-> When a task spans multiple domains (e.g., "add a new feature end-to-end"), consult **all** relevant personas and reconcile their guidance.
+## @orchestrator
+- **Role:** Lead Solutions Architect and delegation coordinator following `.agents/rules/orchestrator.md`. Reads the request, inspects the repository structure, selects the right specialist agents, and reconciles outputs across domains.
+- **Tools:** [`read_file`, `list_directory`]
+- **Model:** `gemini-3.1-pro`
+- **Default Skills:** []
+
+## @frontend-dev
+- **Role:** Frontend React specialist following `.agents/rules/react-rules.md` for components, routes, hooks, styling, and client-side behavior.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/scaffold-frontend-component/SKILL.md`]
+
+## @backend-dev
+- **Role:** FastAPI backend specialist following `.agents/rules/fastapi-rules.md` for endpoints, schemas, CRUD, services, and API contracts.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/scaffold-backend-endpoint/SKILL.md`]
+
+## @architect
+- **Role:** Systems architect following `.agents/rules/architect.md` for boundaries, ADR-worthy decisions, performance trade-offs, and cross-cutting design choices.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/performance-profiler/SKILL.md`]
+
+## @security
+- **Role:** Security engineer following `.agents/rules/security.md` for auth, vulnerability analysis, hardening, dependency risk, and least-privilege review.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/security-scanner/SKILL.md`]
+
+## @devops
+- **Role:** DevOps and SRE specialist following `.agents/rules/devops.md` for Docker, CI/CD, infrastructure, deployment, and operational readiness.
+- **Tools:** [`read_file`, `edit_file`, `run_terminal_command`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/push-code-repo/SKILL.md`, `.agents/skills/performance-profiler/SKILL.md`]
+
+## @dba
+- **Role:** Database administrator following `.agents/rules/dba.md` for schema design, indexing, migrations, seed strategy, and query optimization.
+- **Tools:** [`read_file`, `edit_file`, `run_terminal_command`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/scaffold-db-migration/SKILL.md`, `.agents/skills/performance-profiler/SKILL.md`]
+
+## @qa
+- **Role:** QA engineer following `.agents/rules/qa.md` for coverage strategy, regression prevention, test authoring, and release-quality verification.
+- **Tools:** [`read_file`, `edit_file`, `run_terminal_command`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** [`.agents/skills/pr-reviewer/SKILL.md`]
+
+## @ba
+- **Role:** Business analyst following `.agents/rules/ba.md` for requirements, user stories, acceptance criteria, API contract review, and scope clarity.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** []
+
+## @pm
+- **Role:** Project manager following `.agents/rules/pm.md` for task decomposition, delivery planning, release readiness, and risk tracking.
+- **Tools:** [`read_file`, `edit_file`]
+- **Model:** `gemini-3-flash`
+- **Default Skills:** []
+
+> When a task spans multiple domains (e.g., "add a new feature end-to-end"), consult **all** relevant agents and reconcile their guidance.
 
 ### Mandatory Co-Consultation Matrix
 
-The routing table above selects the **primary** persona. The matrix below lists personas that **must also** be consulted for specific change types, regardless of how the task is phrased:
+The agent routing definitions above select the **primary** agent. The matrix below lists additional rule domains that **must also** be consulted for specific change types, regardless of how the task is phrased:
 
 | Change Type | Always Co-Consult |
 |---|---|
-| Auth / permissions / login | `security.md` + `qa.md` + `architect.md` |
-| Schema / migrations / DB changes | `dba.md` + `fastapi-rules.md` + `qa.md` |
-| External / third-party API integration | `security.md` + `devops.md` + `architect.md` |
-| New API endpoint | `fastapi-rules.md` + `qa.md` + `security.md` |
-| New UI page or route | `react-rules.md` + `qa.md` |
-| Infrastructure / CI-CD / Docker | `devops.md` + `security.md` + `architect.md` |
-| Dependency add / upgrade | `security.md` + `devops.md` |
+| Auth / permissions / login | `@security` + `@qa` + `@architect` |
+| Schema / migrations / DB changes | `@dba` + `@backend-dev` + `@qa` |
+| External / third-party API integration | `@security` + `@devops` + `@architect` |
+| New API endpoint | `@backend-dev` + `@qa` + `@security` |
+| New UI page or route | `@frontend-dev` + `@qa` |
+| Infrastructure / CI-CD / Docker | `@devops` + `@security` + `@architect` |
+| Dependency add / upgrade | `@security` + `@devops` |
 
 ### Supported Version Matrix
 

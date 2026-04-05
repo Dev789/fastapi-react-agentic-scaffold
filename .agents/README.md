@@ -2,12 +2,13 @@
 
 This directory contains the AI persona rules, specialized skills, and workflows that govern how AI assistants interact with this codebase.
 
-> **Start here:** Read `../agents.md` for the global routing table that determines which persona to use for each task.
+> **Start here:** Read `../agents.md` for the global agent routing definitions that determine which Antigravity handle and rule file to use for each task.
 
 ## Personas (`rules/`)
 
 | File | Role | When to Use |
 |---|---|---|
+| `orchestrator.md` | Lead Orchestrator | Triaging incoming work, selecting specialist agents, reconciling cross-domain guidance |
 | `react-rules.md` | Frontend Developer | Writing React components, hooks, pages, styling, or frontend tests |
 | `fastapi-rules.md` | Backend Developer | Writing FastAPI endpoints, models, schemas, CRUD, or backend tests |
 | `architect.md` | Systems Architect | Making architectural decisions, designing system boundaries, ADRs |
@@ -71,6 +72,6 @@ This folder contains legacy prompt templates retained for backward compatibility
 
 ## How to Use
 
-1. **AI assistants** automatically consult the routing table in `agents.md` to select the right persona.
+1. **AI assistants** automatically consult the agent routing definitions in `agents.md` to select the right Antigravity handle and governing rule file.
 2. **Skills** define self-contained capabilities for the AI (e.g., "Run the `security-scanner` skill" or "Use `scaffold-backend-endpoint`").
 3. **Workflows** provide step-by-step guides for common processes - useful for onboarding and consistency.
