@@ -7,8 +7,8 @@ description: Bootstrap the local development environment from a fresh clone
 ## Prerequisites
 - **Git** installed
 - **Docker** and **Docker Compose** installed and running
-- **Node.js** v18+ and **npm** v9+
-- **Python** 3.11+
+- **Node.js** 20.x LTS and a compatible `npm`
+- **Python** 3.11 or 3.12
 - A code editor (VS Code recommended)
 
 ## Steps

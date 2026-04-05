@@ -15,7 +15,7 @@ Get a new team member productive in **one day**. By the end of this workflow, th
 ### 1. Access Setup (Before Day 1)
 The team lead should ensure:
 - [ ] GitHub repo access granted
-- [ ] CI/CD platform access (GitHub Actions — view permissions at minimum)
+- [ ] CI/CD platform access (GitHub Actions - view permissions at minimum)
 - [ ] Communication channels joined (Slack/Teams)
 - [ ] Ticket board access (Jira/Linear/GitHub Issues)
 - [ ] Cloud dashboard access (if applicable)
@@ -34,11 +34,11 @@ cd <project-name>
 Read these files in order:
 1. **`README.md`** — Project overview, tech stack, folder structure.
 2. **`agents.md`** — How AI personas work, code conventions, git workflow.
-3. **`.agents/README.md`** — Index of all personas, prompts, and workflows.
+3. **`.agents/README.md`** — Index of all personas, skills, and workflows.
 
 Then explore the codebase:
-- **Backend:** Start with `backend/app/main.py` → trace a single endpoint from router → CRUD → model → schema.
-- **Frontend:** Start with `frontend/src/main.tsx` → `App.tsx` → trace a single page from route → component → API call → Redux slice.
+- **Backend:** Start with `backend/app/main.py` -> trace a single endpoint from router -> CRUD -> model -> schema.
+- **Frontend:** Start with `frontend/src/main.tsx` -> `App.tsx` -> trace a single page from route -> component -> API call -> Redux slice.
 
 ### 4. Understand the Persona System
 Read at least these two rule files:
@@ -79,9 +79,9 @@ git push origin feature/onboarding-<your-name>
 Create a PR and request review from your onboarding buddy.
 
 ### 7. Review Process Walkthrough
-- Your buddy reviews using the `code-review.md` workflow.
+- Your buddy reviews using the `pr-reviewer` skill.
 - Address any feedback.
-- Merge your first PR! 🎉
+- Merge your first PR.
 
 ### 8. Deep Dives (Day 2+)
 Based on your role, dive deeper:
@@ -89,18 +89,18 @@ Based on your role, dive deeper:
 #### Backend Developer
 - Read `fastapi-rules.md` fully
 - Read `dba.md` (database conventions)
-- Try the `create-endpoint.md` prompt to generate a new resource
-- Run a migration with `create-migration.md`
+- Try the `scaffold-backend-endpoint` skill to generate a new resource
+- Run the `scaffold-db-migration` skill
 
 #### Frontend Developer
 - Read `react-rules.md` fully
 - Understand the Redux store structure in `src/app/`
-- Try the `create-component.md` prompt to generate a component
+- Try the `scaffold-frontend-component` skill to generate a component
 - Run Lighthouse on the frontend
 
 #### Full-Stack
 - Read both rule files
-- Trace a complete feature: API endpoint → database → frontend component → Redux → display
+- Trace a complete feature: API endpoint -> database -> frontend component -> Redux -> display
 
 ### 9. Onboarding Checklist
 Share this with the new developer:
@@ -110,6 +110,6 @@ Share this with the new developer:
 - [ ] Read: relevant persona rules (frontend/backend)
 - [ ] All tests pass locally
 - [ ] First PR created, reviewed, and merged
-- [ ] Knows how to use AI prompts (`create-endpoint`, `create-component`)
+- [ ] Knows how to use the repo skills (`scaffold-backend-endpoint`, `scaffold-frontend-component`)
 - [ ] Knows the git workflow (feature branches, conventional commits)
 - [ ] Assigned first real ticket

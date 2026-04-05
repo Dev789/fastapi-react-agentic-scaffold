@@ -129,4 +129,4 @@ alembic downgrade -1
 - [ ] Announce rollback in team channel
 - [ ] Create incident ticket
 - [ ] Investigate root cause
-- [ ] Write post-mortem (see `security-audit.md` incident process)
+- [ ] Write post-mortem (see the `security-scanner` skill for the incident process)

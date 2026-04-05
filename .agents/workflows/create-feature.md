@@ -5,7 +5,7 @@ description: End-to-end workflow for developing a new feature from branch to PR
 # Create Feature Workflow
 
 ## Prerequisites
-- Local environment is running (see `setup-local.md` workflow)
+- Local environment is running (see `setup-local.md`)
 - You have a ticket/issue number for the feature
 
 ## Steps
@@ -22,13 +22,13 @@ git checkout -b feature/<ticket-id>-<short-description>
 - Consult `.agents/rules/ba.md` for requirements standards.
 - Clarify any ambiguities **before** writing code.
 
-### 3. Backend — Create the Endpoint
-Use the prompt template: `.agents/prompts/create-endpoint.md`
-- Model → Schema → CRUD → Router → Register → Migration → Tests
+### 3. Backend - Create the Endpoint
+Use the skill: `.agents/skills/scaffold-backend-endpoint/SKILL.md`
+- Model -> Schema -> CRUD -> Router -> Register -> Migration -> Tests
 
-### 4. Frontend — Create the Component
-Use the prompt template: `.agents/prompts/create-component.md`
-- Component → Hook → Types → Redux Slice → Tests
+### 4. Frontend - Create the Component
+Use the skill: `.agents/skills/scaffold-frontend-component/SKILL.md`
+- Component -> Hook -> Types -> Redux slice -> Tests
 
 ### 5. Run Linting
 ```bash
@@ -55,10 +55,10 @@ npm run test
 ```
 
 ### 7. Commit Changes (Atomic Commits)
-Per `agents.md` §4.1 — each commit must represent **one logical change**. Never bundle unrelated layers into a single commit. Use the following sequence:
+Per `agents.md` Section 4.1, each commit must represent **one logical change**. Never bundle unrelated layers into a single commit. Use the following sequence:
 
 ```bash
-# Backend — one commit per layer
+# Backend - one commit per layer
 git add backend/app/models/
 git commit -m "feat(models): add <Resource> model with audit columns"
 
@@ -74,7 +74,7 @@ git commit -m "feat(api): add <Resource> endpoints with pagination"
 git add backend/alembic/
 git commit -m "feat(migration): add <resource>s table migration"
 
-# Frontend — one commit per layer
+# Frontend - one commit per layer
 git add frontend/src/types/ frontend/src/api/
 git commit -m "feat(frontend): add <Resource> types and API client"
 
