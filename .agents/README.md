@@ -56,6 +56,19 @@ Agents that do not auto-discover skills should read `.agents/skills/registry.yam
 |---|---|
 | `onboard-developer.md` | New team member onboarding from clone to first merged PR |
 
+## Compatibility Shims (`prompts/`)
+
+This folder contains legacy prompt templates retained for backward compatibility with older AI coding assistants. 
+
+| File | Redirects To |
+|---|---|
+| `create-component.md` | `skills/scaffold-frontend-component/SKILL.md` |
+| `create-endpoint.md` | `skills/scaffold-backend-endpoint/SKILL.md` |
+| `create-migration.md` | `skills/scaffold-db-migration/SKILL.md` |
+
+> [!NOTE]
+> Modern agents should ignore this folder and use the canonical `skills/` directly.
+
 ## How to Use
 
 1. **AI assistants** automatically consult the routing table in `agents.md` to select the right persona.

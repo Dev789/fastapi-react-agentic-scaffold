@@ -73,7 +73,7 @@ my-project/
 ├── .agentignore               # Files AI assistants should skip when indexing
 ├── .agents/
 │   ├── README.md              # Index of all personas, skills, and workflows
-│   ├── rules/                 # 🎭 AI personas (one per SDLC role)
+│   ├── rules/                 # 🎭 AI Personas (Role-based behavior)
 │   │   ├── react-rules.md     #    → Frontend: React + Vite + Tailwind + Redux
 │   │   ├── fastapi-rules.md   #    → Backend: FastAPI + PostgreSQL + SQLAlchemy
 │   │   ├── architect.md       #    → System design, ADRs, API versioning
@@ -83,23 +83,21 @@ my-project/
 │   │   ├── qa.md              #    → Testing strategy, coverage, E2E
 │   │   ├── ba.md              #    → User stories, acceptance criteria, NFRs
 │   │   └── pm.md              #    → Sprint planning, tickets, releases
-│   ├── skills/                # Reusable skill folders
+│   ├── skills/                # 🛠️ Agent Capabilities (Discrete task guides)
 │   │   ├── scaffold-backend-endpoint/
 │   │   ├── scaffold-frontend-component/
 │   │   ├── scaffold-db-migration/
 │   │   ├── pr-reviewer/
 │   │   ├── performance-profiler/
 │   │   └── security-scanner/
-│   └── workflows/             # 🔄 Step-by-step development workflows (10 total)
-│       ├── setup-local.md     #    → Bootstrap local environment
-│       ├── create-feature.md  #    → End-to-end feature development
-│       ├── fix-bug.md         #    → Structured debugging + regression tests
-│       ├── refactor.md        #    → Safe refactoring with test guards
-│       ├── add-third-party-api.md  # → External API integration
-│       ├── write-adr.md       #    → Architecture Decision Records
-│       ├── deploy-production.md #  → Production deployment + rollback
-│       ├── hotfix.md          #    → Emergency production fixes
-│       └── onboard-developer.md #  → New team member onboarding
+│   ├── workflows/             # 🔄 Team Workflows (Multi-step procedures)
+│   │   ├── setup-local.md     #    → Bootstrap local environment
+│   │   ├── create-feature.md  #    → End-to-end feature development
+│   │   ├── fix-bug.md         #    → Structured debugging + regression tests
+│   │   ├── refactor.md        #    → Safe refactoring with test guards
+│   │   └── ... (6 more)
+│   └── prompts/               # 🧩 Legacy Shims (Compatibility layer)
+│       └── create-endpoint.md #    → Redirects legacy agents to skills
 ├── README.md                  # This file
 └── .gitignore
 ```
