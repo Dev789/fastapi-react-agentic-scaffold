@@ -18,8 +18,6 @@ skills:
       - ".agents/rules/security.md"
       - ".agents/rules/dba.md"
       - ".agents/rules/qa.md"
-    replaces:
-      - ".agents/workflows/code-review.md"
   - name: "performance-profiler"
     path: ".agents/skills/performance-profiler/SKILL.md"
     summary: "Run a repeatable backend and frontend performance audit."
@@ -32,8 +30,6 @@ skills:
       - ".agents/rules/react-rules.md"
       - ".agents/rules/fastapi-rules.md"
       - ".agents/rules/dba.md"
-    replaces:
-      - ".agents/workflows/performance-audit.md"
   - name: "security-scanner"
     path: ".agents/skills/security-scanner/SKILL.md"
     summary: "Run a security audit across code, config, and dependencies."
@@ -46,8 +42,6 @@ skills:
       - ".agents/rules/devops.md"
       - ".agents/rules/architect.md"
       - ".agents/rules/qa.md"
-    replaces:
-      - ".agents/workflows/security-audit.md"
   - name: "scaffold-backend-endpoint"
     path: ".agents/skills/scaffold-backend-endpoint/SKILL.md"
     summary: "Create a backend vertical slice for a new API resource."

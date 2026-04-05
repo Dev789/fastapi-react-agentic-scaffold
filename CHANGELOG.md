@@ -25,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Repo documentation so skills, workflows, and compatibility entrypoints are internally consistent
 - Multi-agent persona architecture with 9 specialized AI personas (`react-rules`, `fastapi-rules`, `architect`, `security`, `devops`, `dba`, `qa`, `ba`, `pm`)
 - 6 reusable skills for scaffolding, review, performance, and security tasks
-- 12 development workflows covering feature creation, bug fixes, code review, refactoring, deployment, hotfix, performance audit, security audit, onboarding, third-party API integration, and ADR authoring
+- 10 process workflows covering feature creation, bug fixes, refactoring, deployment, hotfix, onboarding, third-party API integration, ADR authoring, local setup, and test execution
+- Legacy workflow shims removed for capabilities now modeled as skills (`pr-reviewer`, `performance-profiler`, `security-scanner`)
 - Global AI directives with persona routing table, canonical folder structure, and git conventions
 - Documentation standards with Python docstrings (Google style) and TypeScript JSDoc requirements
 - Granular atomic commit rules and changelog maintenance policy
