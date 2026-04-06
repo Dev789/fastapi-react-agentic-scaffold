@@ -85,3 +85,16 @@ skills:
     consult:
       - ".agents/rules/devops.md"
       - "agents.md"
+  - name: "codebase-scout"
+    path: ".agents/skills/codebase-scout/SKILL.md"
+    summary: "Deeply map and understand a new codebase from scratch."
+    triggers:
+      - "map this codebase"
+      - "explain the project architecture"
+      - "show me the core flow"
+      - "how do I develop locally?"
+      - "codebase discovery"
+    consult:
+      - ".agents/rules/orchestrator.md"
+      - ".agents/rules/architect.md"
+      - "agents.md"
